@@ -47,7 +47,6 @@ getMonsters();
 
 function renderCard(cardItem) {
 
-
     //le container
     const newCardElement = document.createElement("div")
     newCardElement.classList.add("container")
@@ -57,6 +56,7 @@ function renderCard(cardItem) {
     //le header
     const header = document.createElement("div")
     header.classList.add("itemHeader")
+    header.classList.add(cardItem["type"])
 
 
     //les deux boutons du header (abort and destroy)
@@ -77,7 +77,16 @@ function renderCard(cardItem) {
     destroyButton.classList.add("destroyButton")
     destroyButton.innerHTML = "&#x1F5D1;"
     destroyButton.style.display = "none"
-    destroyButton.onclick = function (event) {
+    destroyButton.onclick = async function (event) {
+        if (confirm("Vous allez supprimer cet élément !!")) {
+            const promise = await fetch(serverUrl + "/destroy", {
+                method: "POST",
+                body: JSON.stringify({ id: cardItem["id"] })
+            });
+            const processedPromise = await promise.json();
+            return processedPromise;
+        }
+
         event.stopPropagation();
     }
 
@@ -98,6 +107,9 @@ function renderCard(cardItem) {
 
     const formItself = document.createElement("form")
     formItself.classList.add("cardForm")
+    formItself.method = "POST"
+    formItself.action = "/modif"
+    formItself.id = cardItem["id"]
     formItself.onsubmit = function () {
         return okClickModif(formItself)
     }
@@ -106,23 +118,16 @@ function renderCard(cardItem) {
     const divItem = document.createElement("div")
     divItem.classList.add("divItem")
 
-
-    let cardType;
-
     //pour chaque propriété de la carte, création des inputs
     Object.keys(cardItem).forEach(key => {
 
-        if (key == "type") {
-            cardType = cardItem[key]
-            header.classList.add(cardType)
-            return;
-        }
+        if (key === "id" || key === "type") return;
 
         //les labels
         const labelKey = document.createElement("label")
         labelKey.classList.add("inputLabel")
         labelKey.classList.add(key)
-        labelKey.innerHTML = labelizeStat(key) + " du " + capitalizeFirst(cardType)
+        labelKey.innerHTML = labelizeStat(key) + " du " + capitalizeFirst(cardItem["type"])
 
         divItem.appendChild(labelKey)
 
@@ -381,13 +386,6 @@ function labelizeStat(string) {
 }
 
 const objString = JSON.stringify(zombie);
-
-async function getCard() {
-    const promise = await fetch('Cards.json');
-    const processedPromise = await promise.json();
-    return processedPromise;
-
-}
 
 
 

@@ -1,5 +1,6 @@
 [
    {
+      "id": 1,
       "type": "monstre",
       "nom": "Zombie",
       "pv": 10,
@@ -8,6 +9,7 @@
       "init": 2
    },
    {
+      "id": 2,
       "type": "monstre",
       "nom": "Rat",
       "pv": 2,
@@ -16,11 +18,30 @@
       "init": 4
    },
    {
+      "id": 3,
       "type": "monstre",
       "nom": "Gnoll",
       "pv": 10,
       "pc": 3,
       "dmg": 3,
       "init": 3
+   },
+   {
+      "id": 4,
+      "type": "monstre",
+      "nom": "",
+      "pv": 0,
+      "pc": 0,
+      "dmg": 0,
+      "init": 0
+   },
+   {
+      "id": 1686839341817,
+      "type": "monstre",
+      "nom": "Nuée de phalènes",
+      "pv": 1,
+      "pc": 10,
+      "dmg": 0,
+      "init": 1
    }
 ]

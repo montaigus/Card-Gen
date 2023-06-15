@@ -1,11 +1,12 @@
-// function Monstre(nom, pv, pc, dmg, init) {
-//     this.type = "Monstre";
-//     this.nom = nom;
-//     this.pv = pv;
-//     this.pc = pc;
-//     this.dmg = dmg;
-//     this.init = init;
-// }
+function Monstre(nom, pv, pc, dmg, init) {
+    this.id = Date.now();
+    this.type = "monstre";
+    this.nom = nom;
+    this.pv = pv;
+    this.pc = pc;
+    this.dmg = dmg;
+    this.init = init;
+}
 
 import http from 'http'
 import express from "express"
@@ -16,8 +17,10 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+let cardsObject
 
 import { readFile, writeFile } from "fs/promises";
+
 process.on("uncaughtException", (e) => {
     console.log(e)
 })
@@ -28,17 +31,42 @@ app.use(bp.urlencoded({ extended: true }))
 app.use(bp.json())
 app.use(morgan('dev'))
 
-app.post("/todo", (req, res) => {
-    const newTodo = {
-        text: req.body.text
-    }
+app.post("/new", (req, res) => {
 
-    res.json(newTodo)
+    let newMonstre = new Monstre(
+        req.body.nom,
+        +req.body.pv,
+        +req.body.pc,
+        +req.body.dmg,
+        +req.body.init
+    )
+    cardsObject.push(newMonstre)
+    const jsonToWrite = JSON.stringify(cardsObject, null, 3)
+    writeFile(new URL("./Cards.json", import.meta.url), jsonToWrite)
+})
+
+app.post("/modif", (req, res) => {
+    const sentMonstre = req.body
+    console.log(req)
+    console.log(sentMonstre)
+    console.log(cardsObject)
+    const modifiedMonstre = cardsObject.find(item => item.id = sentMonstre.id)
+    console.log(modifiedMonstre)
+
+    res
+})
+
+app.post("/destroy", (req, res) => {
+    const id = req.body
+    console.log(req)
+    console.log(req.body)
+    const destroyedMonstre = cardsObject.find(item => item.id = id)
+    console.log(destroyedMonstre)
 })
 
 app.get("/cards", async (req, res) => {
     const cardsJson = await readFile(new URL('Cards.json', import.meta.url), "utf-8")
-    const cardsObject = JSON.parse(cardsJson)
+    cardsObject = JSON.parse(cardsJson)
 
     res.json(cardsObject)
 })
