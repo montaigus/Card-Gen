@@ -1,0 +1,136 @@
+:root {
+    --goldenBorder: 3px ridge goldenrod;
+    --blueBackground: linear-gradient(189deg, #1020e0 16%, #1f215e 44%);
+    --blueBackgroundHover: linear-gradient(189deg, #1020e0 16%, #1f215e 87%);
+    --redMonstre: linear-gradient(45deg, #800000 16%, #b61200 54%, #510000 90%);
+    --redMonstreHover: linear-gradient(45deg, #800000 16%, #b61200 70%, #510000 90%);
+    --goldenCard: linear-gradient(45deg, rgb(170, 117, 63) 16%, rgb(253, 188, 124) 54%, rgb(161, 101, 41) 90%);
+    --brownLabel: linear-gradient(189deg, rgb(124, 85, 38) 16%, rgb(88, 50, 3) 44%);
+    --brownLabelHover: linear-gradient(189deg, rgb(124, 85, 38) 16%, rgb(88, 50, 3) 80%);
+    transition: all 0.5s;
+}
+
+.page {
+    display: flex;
+    padding: 60px;
+    border: 20px ridge #381a04;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-image: url("../image/wood_texture.png");
+    align-items: flex-start;
+    position: absolute;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: var(--goldenCard);
+    border: 5px inset rgb(54, 50, 42);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 3px 3px 3px black;
+    margin: 5px;
+    /* border-image: url("Image/pngegg.png") 30; */
+}
+
+.page>.container {
+    min-width: 300px;
+}
+
+.itemHeader {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    background: var(--brownLabel);
+    border: var(--goldenBorder);
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* transition: background 1s linear; */
+}
+
+.itemHeader:hover {
+    background: var(--brownLabelHover);
+}
+
+.itemHeader.monstre:hover {
+    background: var(--redMonstreHover);
+}
+
+.monstre {
+    background: var(--redMonstre);
+}
+
+.divForm {
+    overflow: hidden;
+    height: 0px;
+}
+
+.inputLabel {
+    color: black;
+    font-weight: bold;
+}
+
+.inputCard {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.divButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--brownLabel);
+    border: var(--goldenBorder);
+    border-radius: 2px;
+    min-height: 50px;
+}
+
+
+.divButton>button {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    min-height: 30px;
+}
+
+.okButton {
+    min-width: 50%;
+}
+
+.modifButton {
+    min-width: 50%;
+}
+
+.divButton>button:hover {
+    box-shadow: 1px 1px 1px black;
+}
+
+.divItem {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: var(--goldenBorder);
+    border-radius: 2px;
+    flex-wrap: wrap;
+}
+
+.hidden {
+    display: none;
+}
+
+.destroyButton,
+.abortButton {
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    padding-bottom: 4px;
+    min-width: 15%;
+}
