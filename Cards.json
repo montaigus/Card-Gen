@@ -1,6 +1,6 @@
 [
    {
-      "type": "Monstre",
+      "type": "monstre",
       "nom": "Zombie",
       "pv": 10,
       "pc": 2,
@@ -8,7 +8,7 @@
       "init": 2
    },
    {
-      "type": "Monstre",
+      "type": "monstre",
       "nom": "Rat",
       "pv": 2,
       "pc": 5,
@@ -16,7 +16,7 @@
       "init": 4
    },
    {
-      "type": "Monstre",
+      "type": "monstre",
       "nom": "Gnoll",
       "pv": 10,
       "pc": 3,

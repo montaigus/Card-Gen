@@ -37,7 +37,7 @@ async function getMonsters() {
     const processedResponse = await promise.json()
     allMonsters = processedResponse
     allMonsters.forEach(monstre => divFormExisting.appendChild(renderCard(monstre)))
-    setHeaderClick()
+
 }
 
 
@@ -57,13 +57,13 @@ function renderCard(cardItem) {
     //le header
     const header = document.createElement("div")
     header.classList.add("itemHeader")
-    header.classList.add("monstre")
-    //header.innerHTML = cardItem["nom"]
+
 
     //les deux boutons du header (abort and destroy)
     const abortButton = document.createElement("button")
     abortButton.classList.add("abortButton")
     abortButton.innerHTML = "&larr;"
+    abortButton.style.display = "none"
     abortButton.onclick = function (event) {
         event.stopPropagation();
         modifClick(abortButton, true);
@@ -76,6 +76,7 @@ function renderCard(cardItem) {
     const destroyButton = document.createElement("button")
     destroyButton.classList.add("destroyButton")
     destroyButton.innerHTML = "&#x1F5D1;"
+    destroyButton.style.display = "none"
     destroyButton.onclick = function (event) {
         event.stopPropagation();
     }
@@ -92,6 +93,8 @@ function renderCard(cardItem) {
     const lockedForm = document.createElement("div")
     lockedForm.classList.add("divForm")
     lockedForm.classList.add("locked")
+    header.onclick = function () { headerClick(lockedForm) }
+
 
     const formItself = document.createElement("form")
     formItself.classList.add("cardForm")
@@ -111,6 +114,7 @@ function renderCard(cardItem) {
 
         if (key == "type") {
             cardType = cardItem[key]
+            header.classList.add(cardType)
             return;
         }
 
@@ -126,6 +130,7 @@ function renderCard(cardItem) {
         const inputKey = document.createElement("input")
         inputKey.classList.add("inputCard")
         inputKey.classList.add(key)
+        inputKey.disabled = true
         if (key == "nom") inputKey.type = "text";
         else inputKey.type = "number";
         inputKey.value = cardItem[key]
@@ -138,6 +143,7 @@ function renderCard(cardItem) {
     //le bouton OK
     const okDiv = document.createElement("div")
     okDiv.classList.add("divButton")
+    okDiv.style.display = "none"
     const okButton = document.createElement("button")
     okButton.classList.add("okButton")
     okButton.innerHTML = "OK !"
@@ -310,27 +316,40 @@ function setHeaderClick() {
     )
 }
 
-//bloque tous les éléments locked
-function lockStart() {
-    const lockedElementsStart = document.querySelectorAll(".locked");
-    lockedElementsStart.forEach(
-        function (item) {
-            //Bloque tous les inputs locked
-            const lockedInputsStart = item.querySelectorAll("input");
-            lockedInputsStart.forEach(
-                function (item) {
-                    item.disabled = true;
-                }
-            )
-            //Enleve les bouton locked       
-            toggleDisplay(item, ".okButton", true)
-            toggleDisplay(item, ".abortButton", false)
-            toggleDisplay(item, ".destroyButton", false)
+setHeaderClick()
 
+function headerClick(collapseDiv) {
+    {
+        if (collapseDiv.style.height === "100%") {
+            collapseDiv.style.height = "0px";
         }
-    )
+        else {
+            collapseDiv.style.height = "100%";
+        }
+    }
 }
-lockStart();
+
+//bloque tous les éléments locked
+// function lockStart() {
+//     const lockedElementsStart = document.querySelectorAll(".locked");
+//     lockedElementsStart.forEach(
+//         function (item) {
+//             //Bloque tous les inputs locked
+//             const lockedInputsStart = item.querySelectorAll("input");
+//             lockedInputsStart.forEach(
+//                 function (item) {
+//                     item.disabled = true;
+//                 }
+//             )
+//             //Enleve les bouton locked       
+//             toggleDisplay(item, ".okButton", true)
+//             toggleDisplay(item, ".abortButton", false)
+//             toggleDisplay(item, ".destroyButton", false)
+
+//         }
+//     )
+// }
+// lockStart();
 
 
 
