@@ -1,0 +1,26 @@
+[
+   {
+      "type": "Monstre",
+      "nom": "Zombie",
+      "pv": 10,
+      "pc": 2,
+      "dmg": 4,
+      "init": 2
+   },
+   {
+      "type": "Monstre",
+      "nom": "Rat",
+      "pv": 2,
+      "pc": 5,
+      "dmg": 1,
+      "init": 4
+   },
+   {
+      "type": "Monstre",
+      "nom": "Gnoll",
+      "pv": 10,
+      "pc": 3,
+      "dmg": 3,
+      "init": 3
+   }
+]
