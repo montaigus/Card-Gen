@@ -81,7 +81,8 @@ function renderCard(cardItem) {
         if (confirm("Vous allez supprimer cet élément !!")) {
             const promise = await fetch(serverUrl + "/destroy", {
                 method: "POST",
-                body: JSON.stringify({ id: cardItem["id"] })
+                body: JSON.stringify({ id: cardItem["id"] }),
+                headers: { 'content-type': 'application/json' }
             });
             const processedPromise = await promise.json();
             return processedPromise;
@@ -257,12 +258,7 @@ function okClickModif(form) {
         + "\nC'est bon ?";
 
 
-    if (window.confirm(alertText)) {
-
-    } else {
-        return false
-    }
-
+    return window.confirm(alertText)
 }
 
 function modifClick(button, isHeader) {
