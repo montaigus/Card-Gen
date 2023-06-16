@@ -53,7 +53,7 @@ app.post("/modif", (req, res) => {
     const modifiedMonstre = cardsObject.find(item => item.id = sentMonstre.id)
     console.log(modifiedMonstre)
 
-    res
+    res.statusCode(200)
 })
 
 app.post("/destroy", (req, res) => {
