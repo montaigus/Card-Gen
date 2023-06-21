@@ -10,6 +10,10 @@
     transition: all 0.5s;
 }
 
+body {
+    margin:0;
+}
+
 .page {
     display: flex;
     padding: 60px;
