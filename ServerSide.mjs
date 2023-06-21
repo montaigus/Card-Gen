@@ -42,7 +42,7 @@ app.post("/new", (req, res) => {
   const jsonToWrite = JSON.stringify(cardsObject, null, 3);
   writeFile(new URL("./Cards.json", import.meta.url), jsonToWrite);
 
-  res.statusCode(200);
+  res.statusCode = 200;
 });
 
 app.post("/modif", (req, res) => {
@@ -51,21 +51,21 @@ app.post("/modif", (req, res) => {
   console.log(sentMonstre);
   console.log(cardsObject);
   const modifiedMonstre = cardsObject.find(
-    (item) => (item.id = sentMonstre.id)
+    (item) => item.id === sentMonstre.id
   );
   console.log(modifiedMonstre);
 
-  res.statusCode(200);
+  res.statusCode = 200;
 });
 
 app.post("/destroy", (req, res) => {
-  const id = req.body;
-  console.log(req);
-  console.log(req.body);
-  const destroyedMonstre = cardsObject.find((item) => (item.id = id));
-  console.log(destroyedMonstre);
+  const id = req.body.id;
+  const destroyedMonstre = cardsObject.find((item) => +item.id == +id);
+  const newCardsObject = cardsObject.filter((item) => item.id !== id);
+  const jsonToWrite = JSON.stringify(newCardsObject, null, 3);
+  writeFile(new URL("./Cards.json", import.meta.url), jsonToWrite);
 
-  res.statusCode(200);
+  res.statusCode = 200;
 });
 
 app.get("/cards", async (req, res) => {
