@@ -14,6 +14,7 @@ import bp from "body-parser";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { createElement } from "react-dom";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 let cardsObject;
@@ -78,11 +79,14 @@ app.get("/cards", async (req, res) => {
   res.json(cardsObject);
 });
 
-app.use(express.static(__dirname + "/public"));
+// ? N'est plus nécessaire en dev -> server vite
+// ? Le serait potentiellement en build -> fichiers statiques HTML + CSS + JS
 
-// app.get("/", (req, res) => {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
+// app.use(express.static(__dirname + "/public"));
+
+// // app.get("/", (req, res) => {
+// //   res.sendFile(__dirname + "/public/index.html");
+// // });
 
 app.listen(8000, () => {
   console.log("server on");
