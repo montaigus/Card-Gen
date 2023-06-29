@@ -8,7 +8,7 @@ import CardLayout from "./CardLayout";
 
 const App = (props) => {
   return (
-    <div>
+    <div className="appContainer">
       <NewCard />
 
       <CardLayout title="Voir les cartes existantes" class="existingCards">
