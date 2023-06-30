@@ -1,44 +1,24 @@
-import { useState } from "react";
 import CardLayout from "./CardLayout";
+import FormLayout from "./FormLayout";
+
+function Monstre(type, nom, pv, pc, dmg, init) {
+  this.id = Date.now();
+  this.type = type;
+  this.nom = nom;
+  this.pv = pv;
+  this.pc = pc;
+  this.dmg = dmg;
+  this.init = init;
+}
 
 const NewCard = (props) => {
-  const cardType = "Monstre";
+  const cardType = "monstre";
 
-  const [newCard, setNewCard] = useState({
-    id: Date.now(),
-    type: cardType,
-    nom: "",
-    pv: 0,
-    pc: 0,
-  });
+  const newCard = new Monstre(cardType, "", 0, 0, 0, 0);
 
   return (
-    <CardLayout title="Nouvelle carte" class={cardType}>
-      <form className="cardForm" method="POST" action="/new">
-        <div className="divItem">
-          {Object.entries(newCard)
-            .filter(([key]) => key !== "id" && key !== "type")
-            .map(([key, value]) => (
-              <label htmlFor={key} key={key}>
-                {key + " du " + cardType}
-                <input
-                  id={key}
-                  type={key === "nom" ? "text" : "number"}
-                  value={value}
-                  onChange={(e) =>
-                    setNewCard((state) => ({
-                      ...state,
-                      [key]: e.target.value,
-                    }))
-                  }
-                ></input>
-              </label>
-            ))}
-        </div>
-        <div className="divButton">
-          <button className="okButton">OK !</button>
-        </div>
-      </form>
+    <CardLayout title={`Nouvelle carte ${cardType}`} class={cardType}>
+      <FormLayout cardItem={newCard}></FormLayout>
     </CardLayout>
   );
 };
