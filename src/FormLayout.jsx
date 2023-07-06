@@ -1,4 +1,6 @@
 import { useState } from "react";
+import writeCards from "./writeCards";
+import { useQuery } from "@tanstack/react-query";
 
 const FormLayout = (props) => {
   const cardType = props.cardItem.type;
@@ -32,7 +34,16 @@ const FormLayout = (props) => {
   }
 
   return (
-    <form className="cardForm" id={cardItem.id}>
+    <form
+      className="cardForm"
+      id={cardItem.id}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (window.confirm()) {
+          writeCards(cardItem, props.existing);
+        }
+      }}
+    >
       <div className="divItem">
         {Object.entries(cardItem)
           .filter(([key]) => key !== "id" && key !== "type")

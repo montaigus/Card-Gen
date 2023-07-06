@@ -14,12 +14,13 @@ import bp from "body-parser";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { createElement } from "react-dom";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 let cardsObject;
 
 import { readFile, writeFile } from "fs/promises";
+import { readFileSync, writeFileSync } from "fs";
+import cors from "cors";
 
 process.on("uncaughtException", (e) => {
   console.log(e);
@@ -30,6 +31,7 @@ const app = express();
 app.use(bp.urlencoded({ extended: true }));
 app.use(bp.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 app.post("/new", (req, res) => {
   let newMonstre = new Monstre(
@@ -69,13 +71,37 @@ app.post("/destroy", (req, res) => {
   res.statusCode = 200;
 });
 
+app.post("/write", (req, res) => {
+  const cardItem = req.body;
+  const cardsJson = readFileSync(
+    new URL("./Cards.json", import.meta.url),
+    "utf-8"
+  );
+  console.log(cardsJson);
+  const cardsObject = JSON.parse(cardsJson);
+  if (+req.query.new === 1) {
+    cardsObject.push(cardItem);
+  } else if (+req.query.new === 0) {
+    cardsObject[cardsObject.findIndex((item) => item.id === cardItem.id)] =
+      cardItem;
+  } else {
+    console.log("erreur");
+    res.statusCode = 500;
+    return;
+  }
+  const jsonToWrite = JSON.stringify(cardsObject, null, 2);
+  writeFileSync(new URL("./Cards.json", import.meta.url), jsonToWrite);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.statusCode = 200;
+});
+
 app.get("/cards", async (req, res) => {
   const cardsJson = await readFile(
-    new URL("Cards.json", import.meta.url),
+    new URL("./Cards.json", import.meta.url),
     "utf-8"
   );
   cardsObject = JSON.parse(cardsJson);
-
+  res.header("Access-Control-Allow-Origin", "*");
   res.json(cardsObject);
 });
 
@@ -83,10 +109,6 @@ app.get("/cards", async (req, res) => {
 // ? Le serait potentiellement en build -> fichiers statiques HTML + CSS + JS
 
 // app.use(express.static(__dirname + "/public"));
-
-// // app.get("/", (req, res) => {
-// //   res.sendFile(__dirname + "/public/index.html");
-// // });
 
 app.listen(8000, () => {
   console.log("server on");
