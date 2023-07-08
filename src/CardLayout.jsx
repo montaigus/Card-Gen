@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CardLayout = (props) => {
   const [visibility, setVisibility] = useState(false);
@@ -20,7 +21,20 @@ const CardLayout = (props) => {
           <button className="destroyButton">&#x1F5D1;</button>
         )}
       </div>
-      {visibility && <div className="divForm">{props.children}</div>}{" "}
+      <AnimatePresence>
+        {visibility && (
+          <motion.div
+            className="divForm"
+            layout="preserve-aspect"
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            transition={{ duration: 0.5 }}
+            exit={{ height: 0 }}
+          >
+            {props.children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
