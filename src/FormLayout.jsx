@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { writeCard } from "./api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // toutes les props utilisées : cardItem,
 // existing (boolean pour savoir si c'est une carte déjà existante)
@@ -8,6 +9,15 @@ import { writeCard } from "./api";
 const FormLayout = (props) => {
   const cardType = props.cardItem.type;
   const [cardItem, setCardItem] = useState(props.cardItem);
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: writeCard,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cards"] });
+    },
+  });
 
   //Pour afficher les nom de propriété en bon français
   function labelizeStat(string) {
@@ -52,7 +62,7 @@ const FormLayout = (props) => {
       onSubmit={(e) => {
         e.preventDefault();
         if (window.confirm(confirmMsg())) {
-          writeCard(cardItem, props.existing);
+          mutation.mutate({ cardItem, isExisting: props.existing });
         }
       }}
     >

@@ -11,7 +11,7 @@ export async function getCards({ queryKey }) {
   return apiRes.json();
 }
 
-export async function writeCard(cardItem, isExisting) {
+export async function writeCard({ cardItem, isExisting }) {
   const requestOptions = {
     method: "POST",
     headers: {
