@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import ExistingCard from "./ExistingCard";
-// TODO use data from the server
-//import allCards from "./Cards.json";
 import CardLayout from "./CardLayout";
 import fetchCards from "./fetchCards";
+import { useState } from "react";
 
 const AllCards = () => {
   const result = useQuery(["cards", 0], fetchCards);
 
-  const cards = result.data;
+  const [cards, setCards] = useState([]);
 
   return (
     <CardLayout title="Voir les cartes existantes" class="existingCards">

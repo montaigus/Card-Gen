@@ -17,6 +17,7 @@ const ExistingCard = (props) => {
       existing={true}
       locked={locked}
       toggleModif={toggleModif}
+      cardItem={props.cardItem}
     >
       <FormLayout
         cardItem={props.cardItem}
