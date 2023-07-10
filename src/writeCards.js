@@ -1,7 +1,6 @@
 // import cards from "./public/Cards.json";
 
 const writeCards = (cardItem, isExisting) => {
-  const data = JSON.stringify(cardItem, null, 2);
   const requestOptions = {
     method: "POST",
     headers: {

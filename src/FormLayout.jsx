@@ -1,6 +1,5 @@
 import { useState } from "react";
 import writeCards from "./writeCards";
-import { useQuery } from "@tanstack/react-query";
 
 const FormLayout = (props) => {
   const cardType = props.cardItem.type;
