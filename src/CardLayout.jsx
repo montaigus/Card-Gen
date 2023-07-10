@@ -1,4 +1,5 @@
 import { useState } from "react";
+import deleteCard from "./deleteCard";
 
 const CardLayout = (props) => {
   const [visibility, setVisibility] = useState(false);
@@ -17,7 +18,12 @@ const CardLayout = (props) => {
         )}
         <div>{props.title}</div>
         {props.existing && !props.locked && (
-          <button className="destroyButton">&#x1F5D1;</button>
+          <button
+            className="destroyButton"
+            onClick={deleteCard(props.cardItem.id)}
+          >
+            &#x1F5D1;
+          </button>
         )}
       </div>
       {visibility && <div className="divForm">{props.children}</div>}{" "}
