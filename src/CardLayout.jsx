@@ -27,7 +27,7 @@ const CardLayout = (props) => {
         {props.existing && !props.locked && (
           <button
             className="destroyButton"
-            onClick={destroyCard(props.cardItem.id)}
+            onClick={() => destroyCard(props.cardItem.id)}
           >
             &#x1F5D1;
           </button>
