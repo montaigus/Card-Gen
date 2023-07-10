@@ -5,15 +5,10 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import ExistingCard from "./ExistingCard";
 import NewCard from "./NewCard";
-// TODO use data from the server
-//import allCards from "./Cards.json";
-import CardLayout from "./CardLayout";
-import fetchCards from "./fetchCards";
 import AllCards from "./AllCards";
 
-const App = (props) => {
+const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

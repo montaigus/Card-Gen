@@ -1,6 +1,13 @@
 import { useState } from "react";
 import deleteCard from "./deleteCard";
 
+// props utilisées :
+// class (utilisée notamment pour la couleur du header)
+// existing (boolean pour savoir si c'est une carte déjà existante)
+//locked (pour verouiller ou non le formulaire)
+//toggleModif (fonction du parent pour switch le locked)
+// title (titre du header)
+
 const CardLayout = (props) => {
   const [visibility, setVisibility] = useState(false);
 

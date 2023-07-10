@@ -34,11 +34,6 @@ app.post("/destroy", (req, res) => {
 
 app.post("/write", (req, res) => {
   const cardItem = req.body;
-  // const cardsJson = readFileSync(
-  //   new URL("./Cards.json", import.meta.url),
-  //   "utf-8"
-  // );
-  // const cardsObject = JSON.parse(cardsJson);
   if (+req.query.new === 1) {
     cardsObject.push(cardItem);
   } else if (+req.query.new === 0) {
