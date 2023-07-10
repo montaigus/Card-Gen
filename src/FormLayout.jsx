@@ -1,5 +1,5 @@
 import { useState } from "react";
-import writeCards from "./writeCards";
+import { writeCard } from "./api";
 
 // toutes les props utilisées : cardItem,
 // existing (boolean pour savoir si c'est une carte déjà existante)
@@ -52,7 +52,7 @@ const FormLayout = (props) => {
       onSubmit={(e) => {
         e.preventDefault();
         if (window.confirm(confirmMsg())) {
-          writeCards(cardItem, props.existing);
+          writeCard(cardItem, props.existing);
         }
       }}
     >
