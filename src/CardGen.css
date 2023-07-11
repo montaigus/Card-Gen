@@ -81,6 +81,8 @@ body {
   justify-content: space-around;
   align-items: center;
   /* transition: background 1s linear; */
+  /* ? Hacky fix to avoid header to jump height when control buttons are displayed */
+  height: 30px;
 }
 
 .itemHeader:hover {
