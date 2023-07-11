@@ -1,38 +1,61 @@
 import { useState } from "react";
+import writeCards from "./writeCards";
 
+// toutes les props utilisées : cardItem,
+// existing (boolean pour savoir si c'est une carte déjà existante)
+//locked (pour verouiller ou non le formulaire)
+//toggleModif (fonction du parent pour switch le locked)
 const FormLayout = (props) => {
   const cardType = props.cardItem.type;
   const [cardItem, setCardItem] = useState(props.cardItem);
 
+  //Pour afficher les nom de propriété en bon français
   function labelizeStat(string) {
     switch (string) {
-      case "nom":
-        return "Nom";
-        break;
       case "pv":
         return "Points de vie";
-        break;
       case "pc":
         return "Points de combat";
-        break;
       case "dmg":
         return "Dégats";
-        break;
       case "init":
         return "Initiative";
-        break;
 
       default:
+        return capitalizeFirst(string);
         break;
     }
   }
 
+  //majuscule sur la première lettre
   function capitalizeFirst(string) {
     return (string = string.charAt(0).toUpperCase() + string.slice(1));
   }
 
+  const confirmMsg = () => {
+    let msg = "Vous allez";
+    props.existing ? (msg += " modifier :") : (msg += " créer:");
+
+    msg += "\n\n";
+    Object.entries(cardItem).forEach(([key, value]) => {
+      if (key === "id") return;
+      msg += `${labelizeStat(key)} : ${value}\n`;
+    });
+    msg += "\nEst-ce ok ?";
+    return msg;
+  };
+
   return (
-    <form className="cardForm" id={cardItem.id}>
+    <form
+      className="cardForm"
+      id={cardItem.id}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (window.confirm(confirmMsg())) {
+          writeCards(cardItem, props.existing);
+        }
+      }}
+    >
       <div className="divItem">
         {Object.entries(cardItem)
           .filter(([key]) => key !== "id" && key !== "type")
