@@ -41,7 +41,7 @@ const CardLayout = (props) => {
             layout="preserve-aspect"
             initial={{ height: 0 }}
             animate={{ height: "auto" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             exit={{ height: 0 }}
           >
             {props.children}
