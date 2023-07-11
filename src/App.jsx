@@ -1,12 +1,12 @@
 import { createRoot } from "react-dom/client";
-import { useState, useEffect } from "react";
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import NewCard from "./NewCard";
+import Card from "./Card";
 import AllCards from "./AllCards";
+import { Monstre } from "./cardTypes";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -18,10 +18,12 @@ const App = () => {
     },
   });
 
+  const newMonstre = new Monstre("Nouveau Monstre", 0, 0, 0, 0);
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="appContainer">
-        <NewCard />
+        <Card key={newMonstre.id} cardItem={newMonstre} isExisting={false} />
         <AllCards />
       </div>
     </QueryClientProvider>
