@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { destroyCard } from "./api";
 import { motion, AnimatePresence } from "framer-motion";
-import deleteCard from "./deleteCard";
 
 // props utilisées :
 // class (utilisée notamment pour la couleur du header)
