@@ -1,5 +1,3 @@
-// TODO Refactor similar code/config into reusable functions
-
 const requestOptionsPost = (bodyObject) => {
   return {
     method: "POST",
@@ -13,10 +11,9 @@ const requestOptionsPost = (bodyObject) => {
 
 const localhost = "http://localhost:8000";
 
-export async function getCards({ queryKey }) {
-  const id = queryKey[1];
+export async function getCards() {
   const apiRes = await fetch(localhost + "/cards");
-
+  console.log("coucou api");
   if (!apiRes.ok) {
     throw new console.error("not ok");
   }
@@ -29,6 +26,8 @@ export async function writeCard({ cardItem, isExisting }) {
     `${localhost}/write?new=${isExisting ? 0 : 1}`,
     requestOptionsPost(cardItem)
   );
+
+  return apiRes;
 }
 
 export async function destroyCard(id) {

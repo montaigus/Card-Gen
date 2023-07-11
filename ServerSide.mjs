@@ -16,6 +16,8 @@ process.on("uncaughtException", (e) => {
   console.log(e);
 });
 
+const cardsUrl = new URL("./Cards.json", import.meta.url);
+
 const app = express();
 
 app.use(bp.urlencoded({ extended: true }));
@@ -27,16 +29,19 @@ app.post("/destroy", (req, res) => {
   const id = req.body.id;
   cardsObject = cardsObject.filter((item) => item.id !== id);
   const jsonToWrite = JSON.stringify(cardsObject, null, 2);
-  writeFile(new URL("./Cards.json", import.meta.url), jsonToWrite);
+  writeFileSync(cardsUrl, jsonToWrite);
 
   res.statusCode = 200;
 });
 
 app.post("/write", (req, res) => {
   const cardItem = req.body;
+  //Si la carte est nouvelle
   if (+req.query.new === 1) {
     cardsObject.push(cardItem);
-  } else if (+req.query.new === 0) {
+  }
+  //Si la carte est modifiée
+  else if (+req.query.new === 0) {
     cardsObject[cardsObject.findIndex((item) => item.id === cardItem.id)] =
       cardItem;
   } else {
@@ -45,16 +50,13 @@ app.post("/write", (req, res) => {
     return;
   }
   const jsonToWrite = JSON.stringify(cardsObject, null, 2);
-  writeFileSync(new URL("./Cards.json", import.meta.url), jsonToWrite);
+  writeFileSync(cardsUrl, jsonToWrite);
   res.header("Access-Control-Allow-Origin", "*");
   res.statusCode = 200;
 });
 
 app.get("/cards", async (req, res) => {
-  const cardsJson = await readFile(
-    new URL("./Cards.json", import.meta.url),
-    "utf-8"
-  );
+  const cardsJson = await readFile(cardsUrl, "utf-8");
   cardsObject = JSON.parse(cardsJson);
   res.header("Access-Control-Allow-Origin", "*");
   res.json(cardsObject);
