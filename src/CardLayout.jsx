@@ -16,6 +16,12 @@ const CardLayout = (props) => {
     setVisibility(!visibility);
   }
 
+  function confirmMsg(cardItem) {
+    let msg = "Attention !\nVous allez détruire :\n";
+    msg += `${cardItem.type} : ${cardItem.nom}`;
+    return msg;
+  }
+
   return (
     <div className="container">
       <div className={`itemHeader ${props.class}`} onClick={toggleVisibility}>
@@ -28,7 +34,11 @@ const CardLayout = (props) => {
         {props.existing && !props.locked && (
           <button
             className="destroyButton"
-            onClick={() => destroyCard(props.cardItem.id)}
+            onClick={() => {
+              if (confirm(confirmMsg(props.cardItem))) {
+                destroyCard(props.cardItem.id);
+              }
+            }}
           >
             &#x1F5D1;
           </button>
