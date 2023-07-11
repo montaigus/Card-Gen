@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { destroyCard } from "./api";
 import { motion, AnimatePresence } from "framer-motion";
 import deleteCard from "./deleteCard";
 
@@ -28,7 +29,7 @@ const CardLayout = (props) => {
         {props.existing && !props.locked && (
           <button
             className="destroyButton"
-            onClick={deleteCard(props.cardItem.id)}
+            onClick={() => destroyCard(props.cardItem.id)}
           >
             &#x1F5D1;
           </button>
