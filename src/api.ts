@@ -11,8 +11,8 @@ const requestOptionsPost = (bodyObject) => {
 
 const localhost = "http://localhost:8000";
 
-export async function getCards() {
-  const apiRes = await fetch(localhost + "/cards");
+export async function getCards({ queryKey }) {
+  const apiRes = await fetch(`${localhost}/cards?type=${queryKey[1].type}`);
   console.log("coucou api");
   if (!apiRes.ok) {
     throw new console.error("not ok");

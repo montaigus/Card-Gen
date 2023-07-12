@@ -9,6 +9,13 @@
     #b61200 70%,
     #510000 90%
   );
+  --blueSort: linear-gradient(45deg, #000980 16%, #0c00b6 54%, #050051 90%);
+  --blueSortHover: linear-gradient(
+    45deg,
+    #000980 16%,
+    #0c00b6 70%,
+    #050051 90%
+  );
   --goldenCard: linear-gradient(
     45deg,
     rgb(170, 117, 63) 16%,
@@ -100,6 +107,14 @@ body {
 
 .monstre {
   background: var(--redMonstre);
+}
+
+.itemHeader.sort:hover {
+  background: var(--blueSortHover);
+}
+
+.sort {
+  background: var(--blueSort);
 }
 
 .divForm {

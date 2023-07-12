@@ -57,9 +57,11 @@ app.post("/write", (req, res) => {
 
 app.get("/cards", async (req, res) => {
   const cardsJson = await readFile(cardsUrl, "utf-8");
+  const type = req.query.type;
   cardsObject = JSON.parse(cardsJson);
+  const filteredCards = cardsObject.filter((item) => item.type === type);
   res.header("Access-Control-Allow-Origin", "*");
-  res.json(cardsObject);
+  res.json(filteredCards);
 });
 
 // ? N'est plus nécessaire en dev -> server vite

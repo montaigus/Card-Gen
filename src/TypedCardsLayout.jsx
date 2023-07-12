@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Card from "./Card";
 import CardLayout from "./CardLayout";
 import { getCards } from "./api";
-import { Monstre } from "./cardTypes";
+import { Monstre, Sort } from "./cardTypes";
 
 const TypedCardsLayout = (props) => {
   //majuscule sur la première lettre
@@ -11,8 +11,19 @@ const TypedCardsLayout = (props) => {
   }
   const cardsType = props.type;
   //aller chercher les données sur le server
-  const result = useQuery(["cards", props.type], getCards);
-  const newMonstre = new Monstre("Nouveau Monstre", 0, 0, 0, 0);
+  const result = useQuery(["cards", { type: props.type }], getCards);
+
+  const createNewCard = (type) => {
+    switch (type) {
+      case "monstre":
+        return new Monstre("Nouveau Monstre", 0, 0, 0, 0);
+
+      case "sort":
+        return new Sort("Nouveau Sort", 0, 0);
+    }
+  };
+
+  const newCard = createNewCard(props.type);
 
   return (
     <CardLayout
@@ -20,7 +31,7 @@ const TypedCardsLayout = (props) => {
       class={`typedCards ${props.type}`}
     >
       <div className="newContainer">
-        <Card key={newMonstre.id} cardItem={newMonstre} isExisting={false} />
+        <Card key={newCard.id} cardItem={newCard} isExisting={false} />
       </div>
       <div className="existingContainer">
         {!result.isLoading &&

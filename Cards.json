@@ -45,12 +45,10 @@
     "init": 5
   },
   {
-    "id": 1688664046138,
-    "type": "monstre",
-    "nom": "Prout",
-    "pv": "5",
-    "pc": "6",
-    "dmg": "7",
-    "init": "5"
+    "id": 1689166704670,
+    "type": "sort",
+    "nom": "Eclair",
+    "dmg": "2",
+    "cm": "1"
   }
 ]

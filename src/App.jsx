@@ -4,9 +4,6 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import Card from "./Card";
-import AllCards from "./AllCards";
-import { Monstre } from "./cardTypes";
 import TypedCardsLayout from "./TypedCardsLayout";
 
 const App = () => {
@@ -19,12 +16,11 @@ const App = () => {
     },
   });
 
-  const newMonstre = new Monstre("Nouveau Monstre", 0, 0, 0, 0);
-
   return (
     <QueryClientProvider client={queryClient}>
       <div className="appContainer">
         <TypedCardsLayout type="monstre" />
+        <TypedCardsLayout type="sort" />
       </div>
     </QueryClientProvider>
   );
