@@ -7,6 +7,7 @@ import {
 import Card from "./Card";
 import AllCards from "./AllCards";
 import { Monstre } from "./cardTypes";
+import TypedCardsLayout from "./TypedCardsLayout";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -23,8 +24,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="appContainer">
-        <Card key={newMonstre.id} cardItem={newMonstre} isExisting={false} />
-        <AllCards />
+        <TypedCardsLayout type="monstre" />
       </div>
     </QueryClientProvider>
   );
