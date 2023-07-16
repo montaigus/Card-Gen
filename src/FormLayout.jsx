@@ -30,6 +30,8 @@ const FormLayout = (props) => {
         return "Dégats";
       case "init":
         return "Initiative";
+      case "cm":
+        return "Coût en mana";
 
       default:
         return capitalizeFirst(string);

@@ -16,10 +16,10 @@ const TypedCardsLayout = (props) => {
   const createNewCard = (type) => {
     switch (type) {
       case "monstre":
-        return new Monstre("Nouveau Monstre", 0, 0, 0, 0);
+        return new Monstre();
 
       case "sort":
-        return new Sort("Nouveau Sort", 0, 0);
+        return new Sort();
     }
   };
 

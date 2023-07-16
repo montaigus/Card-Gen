@@ -50,5 +50,12 @@
     "nom": "Eclair",
     "dmg": "2",
     "cm": "1"
+  },
+  {
+    "id": 1689166793980,
+    "type": "sort",
+    "nom": "Doigt de Mort",
+    "dmg": "10",
+    "cm": "6"
   }
 ]
