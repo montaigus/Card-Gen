@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
     "outDir": "dist",
-    "target": "ES6"
+    "target": "ES6",
+    "module": "es2020",
+    "jsx": "react-jsx",
+    "types": ["react"],
+    "lib": ["es2020", "dom"],
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src", "ServerSide.mjs", "ServerSide.ts"]
+  "include": ["src", "ServerSide.ts"]
 }
