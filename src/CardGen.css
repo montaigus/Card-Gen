@@ -74,7 +74,7 @@ body {
   overflow: hidden;
   box-shadow: 3px 3px 3px black;
   margin: 5px;
-  min-width: 250px;
+  min-width: 275px;
   /* border-image: url("Image/pngegg.png") 30; */
 }
 
@@ -189,12 +189,7 @@ input {
   display: block;
 }
 
-.newContainer {
-  width: 20%;
-}
-
 .existingContainer {
-  width: 80%;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
