@@ -1,12 +1,20 @@
 import { useState } from "react";
 import CardLayout from "./CardLayout";
 import FormLayout from "./FormLayout";
+import { allCardTypes } from "./cardTypes";
 
-const Card = (props) => {
-  const cardType = props.cardItem["type"];
+type CardComponentProps = {
+  cardItem: allCardTypes;
+  key: number;
+  isExisting: boolean;
+};
+
+const CardComponent = (props: CardComponentProps): JSX.Element => {
+  const cardType: string = props.cardItem["type"];
   const [locked, setLocked] = useState(props.isExisting);
 
-  function toggleModif(event) {
+  //!Pas bien, mais void ne conviens pas
+  function toggleModif(): any {
     setLocked(!locked);
   }
 
@@ -29,4 +37,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default CardComponent;

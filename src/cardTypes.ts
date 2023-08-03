@@ -1,16 +1,29 @@
-export class Monstre {
+export class CardBase {
   id: number;
   type: string;
   nom: string;
+
+  constructor(type: string, name: string) {
+    this.id = Date.now();
+    this.type = type;
+    this.nom = name;
+  }
+}
+
+interface Character {
+  pv: number;
+  pc: number;
+  init: number;
+}
+
+export class Monstre extends CardBase implements Character {
   pv: number;
   pc: number;
   dmg: number;
   init: number;
 
-  constructor(value?: {}) {
-    this.id = Date.now();
-    this.type = "monstre";
-    this.nom = "Nouveau monstre";
+  constructor() {
+    super("monstre", "Nouveau monstre");
     this.pv = 0;
     this.pc = 0;
     this.dmg = 0;
@@ -18,17 +31,14 @@ export class Monstre {
   }
 }
 
-export class Sort {
-  id: number;
-  type: string;
-  nom: string;
+export class Sort extends CardBase {
   dmg: number;
   cm: number;
   constructor() {
-    this.id = Date.now();
-    this.type = "sort";
-    this.nom = "Nouveau sort";
+    super("sort", "Nouveau sort");
     this.dmg = 0;
     this.cm = 0;
   }
 }
+
+export type allCardTypes = Monstre | Sort | CardBase;

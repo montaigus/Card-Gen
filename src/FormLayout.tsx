@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { writeCard } from "./api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { allCardTypes } from "./cardTypes";
 
 // toutes les props utilisées : cardItem,
 // existing (boolean pour savoir si c'est une carte déjà existante)
 //locked (pour verouiller ou non le formulaire)
 //toggleModif (fonction du parent pour switch le locked)
-const FormLayout = (props) => {
+
+type FormLayoutProps = {
+  cardItem: allCardTypes;
+  existing: boolean;
+  locked: boolean;
+  //TODO à modifier quand je saurai quoi mettre
+  toggleModif: any;
+};
+
+const FormLayout = (props: FormLayoutProps): JSX.Element => {
   const cardType = props.cardItem.type;
   const [cardItem, setCardItem] = useState(props.cardItem);
 
@@ -20,7 +30,7 @@ const FormLayout = (props) => {
   });
 
   //Pour afficher les nom de propriété en bon français
-  function labelizeStat(string) {
+  function labelizeStat(string: string): string {
     switch (string) {
       case "pv":
         return "Points de vie";
@@ -35,12 +45,11 @@ const FormLayout = (props) => {
 
       default:
         return capitalizeFirst(string);
-        break;
     }
   }
 
   //majuscule sur la première lettre
-  function capitalizeFirst(string) {
+  function capitalizeFirst(string: string): string {
     return (string = string.charAt(0).toUpperCase() + string.slice(1));
   }
 
@@ -49,6 +58,7 @@ const FormLayout = (props) => {
     props.existing ? (msg += " modifier :") : (msg += " créer:");
 
     msg += "\n\n";
+
     Object.entries(cardItem).forEach(([key, value]) => {
       if (key === "id") return;
       msg += `${labelizeStat(key)} : ${value}\n`;
@@ -60,7 +70,7 @@ const FormLayout = (props) => {
   return (
     <form
       className="cardForm"
-      id={cardItem.id}
+      id={cardItem.id.toString()}
       onSubmit={(e) => {
         e.preventDefault();
         if (window.confirm(confirmMsg())) {

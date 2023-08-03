@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { destroyCard } from "./api";
 import { motion, AnimatePresence } from "framer-motion";
+import { allCardTypes } from "./cardTypes";
 
-// props utilisées :
-// class (utilisée notamment pour la couleur du header)
-// existing (boolean pour savoir si c'est une carte déjà existante)
-//locked (pour verouiller ou non le formulaire)
-//toggleModif (fonction du parent pour switch le locked)
-// title (titre du header)
+type CardLayoutProps = {
+  class: string;
+  existing?: boolean;
+  locked?: boolean;
+  //TODO a modifier quand j'en saurai plus
+  toggleModif?: any;
+  title: string;
+  cardItem?: allCardTypes;
+};
 
-const CardLayout = (props) => {
+const CardLayout = (props: PropsWithChildren<CardLayoutProps>): JSX.Element => {
   const [visibility, setVisibility] = useState(false);
 
-  function toggleVisibility(event) {
+  function toggleVisibility() {
     setVisibility(!visibility);
   }
 
-  function confirmMsg(cardItem) {
+  function confirmMsg(cardItem: allCardTypes) {
     let msg = "Attention !\nVous allez détruire :\n";
     msg += `${cardItem.type} : ${cardItem.nom}`;
     return msg;
@@ -35,7 +39,7 @@ const CardLayout = (props) => {
           <button
             className="destroyButton"
             onClick={() => {
-              if (confirm(confirmMsg(props.cardItem))) {
+              if (props.cardItem && confirm(confirmMsg(props.cardItem))) {
                 destroyCard(props.cardItem.id);
               }
             }}
