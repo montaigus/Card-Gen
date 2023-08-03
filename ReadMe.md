@@ -15,14 +15,15 @@ PMT is not using the file a this moment
 
 ## Technologies
 
-- Node V18.15.0
+- Node V18.15.0 (+ express, morgan and body-parser)
 - Vite v4.3.9
 - React
 - React-query
+- Typescript
 
 ## Features
 
-- Creating monster cards
+- Creating monster and cast cards
 - modifying and deleting existing cards
 
 ## Setup
@@ -33,11 +34,14 @@ to run it :
 
 ```
 $ cd ../"Card Gen"
-$ vite run dev
+$ npm run dev (frontend)
+$ npm start (backend)
 ```
 
 then open a browser page on "localhost:5173"
 
 ## Status
 
-Not writting cards on server anymore, but running on react
+running on react
+now written in typescript
+need to deploy on a real server, and it's done!
