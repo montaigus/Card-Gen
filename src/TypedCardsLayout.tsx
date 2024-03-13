@@ -42,6 +42,7 @@ const TypedCardsLayout = (props: TypedCardsLayoutProps): JSX.Element => {
       </div>
       <div className="existingContainer">
         {!result.isLoading &&
+          !result.isError &&
           result.data.map((cardItem: allCardTypes) => (
             <Card key={cardItem.id} cardItem={cardItem} isExisting={true} />
           ))}

@@ -2,13 +2,14 @@
   "name": "card-gen",
   "version": "1.0.0",
   "description": "",
-  "main": "ServerSide.js",
+  "main": "ServerSide.ts",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"./**/*.{js,jsx}\" --quiet",
-    "start": "nodemon ./ServerSide.mjs --port 8000 --ignore Cards.json "
+    "start": "nodemon -w . --ext ts --exec tsx ServerSide.ts"
   },
   "nodemonConfig": {
     "ignore": [

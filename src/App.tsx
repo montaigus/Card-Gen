@@ -27,5 +27,7 @@ const App = () => {
 };
 
 const container = document.getElementById("page");
-const root = createRoot(container);
-root.render(<App />);
+if (container) {
+  const root = createRoot(container);
+  root.render(<App />);
+}
