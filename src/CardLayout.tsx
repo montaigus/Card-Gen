@@ -16,7 +16,8 @@ type CardLayoutProps = {
 const CardLayout = (props: PropsWithChildren<CardLayoutProps>): JSX.Element => {
   const [visibility, setVisibility] = useState(false);
 
-  function toggleVisibility() {
+  function toggleVisibility(e: any) {
+    if (e.target.tagName === "BUTTON") return;
     setVisibility(!visibility);
   }
 

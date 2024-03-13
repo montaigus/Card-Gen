@@ -1,15 +1,15 @@
 :root {
-  --goldenBorder: 3px ridge goldenrod;
+  --goldenBorder: 3px ridge rgb(121, 100, 46);
   --blueBackground: linear-gradient(189deg, #1020e0 16%, #1f215e 44%);
   --blueBackgroundHover: linear-gradient(189deg, #1020e0 16%, #1f215e 87%);
-  --redMonstre: linear-gradient(45deg, #800000 16%, #b61200 54%, #510000 90%);
+  --redMonstre: linear-gradient(45deg, #800000 16%, #bd2412 54%, #510000 90%);
   --redMonstreHover: linear-gradient(
     45deg,
     #800000 16%,
     #b61200 70%,
     #510000 90%
   );
-  --blueSort: linear-gradient(45deg, #000980 16%, #0c00b6 54%, #050051 90%);
+  --blueSort: linear-gradient(45deg, #000980 16%, #423ba8 54%, #050051 90%);
   --blueSortHover: linear-gradient(
     45deg,
     #000980 16%,
@@ -44,7 +44,8 @@ body {
   border: 20px ridge #381a04;
   border-radius: 5px;
   box-sizing: border-box;
-  background-image: url("../image/wood_texture.png");
+  background-color: #451c00;
+  background-image: url("../image/wood-pattern.png");
   position: absolute;
   position: absolute;
   width: 100%;
@@ -120,6 +121,11 @@ body {
 .divForm {
   overflow: hidden;
   display: flex;
+}
+
+.typedCards + .divForm {
+  background-color: #005400;
+  background-image: url("image/black-felt.png");
 }
 
 .inputLabel {
