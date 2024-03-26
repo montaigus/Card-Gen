@@ -33,11 +33,11 @@ export class Monstre extends CardBase implements Character {
 
 export class Sort extends CardBase {
   dmg: number;
-  cm: number;
+  cost: number;
   constructor() {
     super("sort", "Nouveau sort");
     this.dmg = 0;
-    this.cm = 0;
+    this.cost = 0;
   }
 }
 

@@ -5,6 +5,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import TypedCardsLayout from "./TypedCardsLayout";
+import { StrictMode } from "react";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -29,5 +30,9 @@ const App = () => {
 const container = document.getElementById("page");
 if (container) {
   const root = createRoot(container);
-  root.render(<App />);
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
 }

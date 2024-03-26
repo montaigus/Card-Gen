@@ -26,6 +26,8 @@ app.use(bp.json());
 app.use(morgan("dev"));
 app.use(cors());
 
+//va chercher les cartes demandées sur le fichier JSON
+//! A transformer pour faire du BDD
 app.get("/cards", async (req, res) => {
   const cardsJson = await readFile(cardsUrl, "utf-8");
   const type = req.query.type;

@@ -14,7 +14,7 @@ const requestOptionsPost = (bodyObject: allCardTypes | { id: number }) => {
 const localhost: string = "http://localhost:8000";
 
 // TODO oops, un any qui traine, mais faut que je revoie ces histoires de query
-export async function getCards({ queryKey }: any) {
+export async function getCards({ queryKey }: any): Promise<allCardTypes[]> {
   const apiRes: Response = await fetch(
     `${localhost}/cards?type=${queryKey[1].type}`
   );

@@ -40,7 +40,7 @@ const FormLayout = (props: FormLayoutProps): JSX.Element => {
         return "Dégats";
       case "init":
         return "Initiative";
-      case "cm":
+      case "cost":
         return "Coût en mana";
 
       default:
