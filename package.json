@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"./**/*.{js,jsx}\" --quiet",
-    "start": "nodemon -w . --ext ts --exec tsx ServerSide.ts"
+    "start": "nodemon -w . --ext ts --exec tsx src/ServerSide.ts"
   },
   "nodemonConfig": {
     "ignore": [

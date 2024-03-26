@@ -11,7 +11,7 @@ let cardsObject: allCardTypes[];
 
 import { readFile, writeFile } from "fs/promises";
 import { readFileSync, writeFileSync } from "fs";
-import { allCardTypes } from "./src/cardTypes";
+import { allCardTypes } from "./cardTypes";
 
 process.on("uncaughtException", (e) => {
   console.log(e);
